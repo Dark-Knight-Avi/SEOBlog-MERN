@@ -4,7 +4,8 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const router = require("./router")
+const blogRouter = require("./routes/router")
+const authRouter = require("./routes/auth")
 require("dotenv").config();
 
 mongoose.set('strictQuery', false)
@@ -27,8 +28,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // routes middleware
-app.use('/api', router)
-
+app.use('/api', blogRouter)
+app.use('/auth', authRouter)
 
 //port
 const port = process.env.PORT || 8000
